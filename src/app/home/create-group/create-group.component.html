@@ -1,0 +1,24 @@
+<div class="p-3 d-flex h-100 flex-column w-100">
+    <h3>Criar Novo Grupo</h3>
+    <hr>
+    <form [formGroup]="createGroupForms" class="h-100 d-flex flex-column" (ngSubmit)="criarGrupo()">
+        <div class="form-floating mb-3">
+            <input
+            [class.is-invalid]="this.createGroupForms.controls.name.invalid &&
+            this.createGroupForms.controls.name.dirty"
+            type="text" formControlName="name" class="form-control form-control-sm" id="name" placeholder="name">
+            <label for="name">Nome</label>
+        </div>
+        <div class="form-floating mb-3">
+            <div class="form-floating">
+                <textarea class="form-control" formControlName="description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
+                <label for="floatingTextarea2">Descrição</label>
+            </div>
+        </div>
+        <div class="form-check form-switch">
+            <input formControlName="isPublic" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Grupo Publico</label>
+        </div>
+        <button type="submit" [disabled]="createGroupForms.invalid" class="btn btn-lg btn-block btn-primary mt-auto w-100">Criar Grupo</button>
+    </form>
+</div>

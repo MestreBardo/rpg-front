@@ -1,0 +1,69 @@
+<app-menu></app-menu>
+<div class="container-fluid">
+    <div class="p-5 position-relative bg-light rounded-3 mt-3 custom-bg-image">
+      <div class="position-absolute d-flex" style="top: 10px;right: 10px;">
+        <ng-container *ngIf="!me">
+          <button class="btn btn-info text-white ms-2"><fa-icon [icon]="faSignOutAlt"></fa-icon></button>
+        </ng-container>
+        <ng-container *ngIf="me">
+          <button *ngIf="me.role === 'master'" (click)="editingCampaign(true)" class="btn btn-info text-white"><fa-icon [icon]="faPencilAlt"></fa-icon></button>
+          <button *ngIf="me.role !== 'master'" class="btn btn-danger ms-2"><fa-icon [icon]="faSignOutAlt"></fa-icon></button>
+        </ng-container>
+        
+      </div>
+        <div class=" container-fluid py-5">
+          <h1 class="display-5 fw-bold text-white">{{campaign.name}}</h1>
+        </div>
+    </div>
+    <div class="d-flex bg-light justify-content-end p-2">
+        <p class="mb-0">{{campaign.system}}<fa-icon class="ms-2" [icon]="faJournalWhills"></fa-icon></p>
+        <p class="mb-0 mx-2">|</p>
+        <p class="mb-0">{{campaign.master.username}}<fa-icon class="ms-2" [icon]="faUser"></fa-icon></p>
+        <p class="mb-0 mx-2">|</p>
+        <p class="mb-0">{{campaign.createdAt | date:"dd/MM/yyyy"}}<fa-icon class="ms-2" [icon]="faCalendar"></fa-icon></p>
+    </div>
+    <h4 class="mt-2">Descrição:</h4>
+    <div style="min-height: 200px;max-height: 200px; overflow: auto;" class="border p-2 rounded">
+        <p>{{campaign.description}}</p>
+    </div>
+    
+
+    <ul class="nav nav-tabs mt-3">
+        <li 
+        (click)="goTo('players')" class="nav-item pointer">
+          <a
+          [class.active]="lookingFor === 'players'"  
+          class="nav-link">Jogadores</a>
+        </li>
+        <li
+        (click)="goTo('sessions')" class="nav-item pointer">
+          <a
+          [class.active]="lookingFor === 'sessions'"  
+          class="nav-link">Sessões</a>
+        </li>
+        <li
+        (click)="goTo('characters')" class="nav-item pointer">
+          <a
+          [class.active]="lookingFor === 'characters'"  
+          class="nav-link">Personagens</a>
+        </li>
+        <li
+        (click)="goTo('template')" class="nav-item pointer">
+          <a
+          [class.active]="lookingFor === 'template'"  
+          class="nav-link">Template</a>
+        </li>
+    </ul>
+    <ng-container *ngIf="campaign.id" [ngSwitch]="lookingFor">
+        <!-- <app-group-members [groupId]="group.id" [me]="me" *ngSwitchCase="'members'"></app-group-members>
+        <app-group-campaigns (initCreatingCampaign)="creatingCampaign($event)" [groupId]="group.id" *ngSwitchCase="'campaigns'"></app-group-campaigns> -->
+    </ng-container>
+</div>
+
+<div *ngIf="isEditingCampaign"  class="position-absolute h-100 bg-white border border-left w-25" style="right: 0; top: 0;">
+  <app-edit-campaign [campaign]="campaign" (finishEditingCampaign)="editingCampaign($event)"></app-edit-campaign>
+</div>
+
+<!-- <div *ngIf="isCreatingCampaign"  class="position-absolute h-100 bg-white border border-left w-25" style="right: 0; top: 0;">
+  <app-create-campaign [groupId]="group.id" (finishCreatingCampaign)="creatingCampaign($event)"></app-create-campaign>
+</div> -->

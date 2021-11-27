@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+<div class="container-fluid mt-2">
+    <ul class="nav nav-tabs">
+        <li 
+        (click)="goTo('groups')" class="nav-item pointer">
+          <a
+          [class.active]="lookingFor === 'groups'"  
+          class="nav-link">Grupos</a>
+        </li>
+        <li
+        (click)="goTo('campaigns')" class="nav-item pointer">
+          <a
+          [class.active]="lookingFor === 'campaigns'"  
+          class="nav-link">Campanhas</a>
+        </li>
+    </ul>
+    <ng-container [ngSwitch]="lookingFor">
+        <app-my-groups (initCreatingGroup)="creatingGroup($event)" *ngSwitchCase="'groups'"></app-my-groups>
+        <app-my-campaigns *ngSwitchCase="'campaigns'"></app-my-campaigns>
+    </ng-container>
+</div>
+
+<div *ngIf="isCreatingGroup"  class="position-absolute h-100 bg-white border border-left w-25" style="right: 0; top: 0;">
+  <app-create-group (finishCreatingGroup)="creatingGroup($event)"></app-create-group>
+</div>

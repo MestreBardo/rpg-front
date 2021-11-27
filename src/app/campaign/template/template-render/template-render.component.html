@@ -1,0 +1,12 @@
+
+<ng-container [ngSwitch]="toRender.type">
+    <div (click)="openRow($event)" class="border column-maker bg-white" style="min-height: 20px;" *ngSwitchCase="'column'" [class]="'template' + toRender.index">
+        <app-template-render *ngFor="let children of toRender.childrens"  [toRender]="children"></app-template-render>
+    </div>
+    <div (click)="openColumn($event)" class="border row bg-white" style="min-height: 20px;"  *ngSwitchCase="'row'" [class]="'template' + toRender.index">
+        <div *ngFor="let children of toRender.childrens" [class]="'col-' + children.size">
+            <app-template-render  [toRender]="children"></app-template-render>
+        </div>
+    </div>
+</ng-container>
+

@@ -1,0 +1,17 @@
+<div class="position-absolute vh-100 vw-100 container-fluid">
+    <div class="row h-100">
+        <div class="col-8 bg-image-custom"></div>
+        <div class="col-4 d-flex flex-column py-2 bg-light">
+            <img style="max-width: 300px;" class="img-fluid mx-auto" src="./../../assets/Logo-removebg-preview.png">
+            <div class="h-100 ">
+                <ng-container [ngSwitch]="form">
+                    <app-login *ngSwitchCase="'login'"></app-login>
+                    <app-register *ngSwitchCase="'register'"></app-register>
+                </ng-container>
+            </div>
+            
+            
+        </div>
+    </div>
+
+</div>

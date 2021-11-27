@@ -1,0 +1,106 @@
+<div class="d-flex px-5 h-100  flex-column">
+    <h1 class="mb-0 mt-auto">Registro</h1>
+    <hr>
+    <form [formGroup]="registerForms" (ngSubmit)="register()">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <input
+                    [class.is-invalid]="this.registerForms.controls.name.invalid &&
+                    this.registerForms.controls.name.dirty"
+                     type="text" formControlName="name" class="form-control form-control-sm" id="name" placeholder="Nome">
+                    <label for="name">Nome</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <input 
+                    [class.is-invalid]="this.registerForms.controls.surname.invalid &&
+                    this.registerForms.controls.surname.dirty"
+                    type="text" formControlName="surname" class="form-control form-control-sm" id="surname" placeholder="Sobrenome">
+                    <label for="surname">Sobrenome</label>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <input
+                    [class.is-invalid]="this.registerForms.controls.gender.invalid &&
+                    this.registerForms.controls.gender.dirty"
+                    type="text" formControlName="gender" class="form-control form-control-sm" id="gender" placeholder="Password">
+                    <label for="gender">Genêro</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <input
+                    [class.is-invalid]="this.registerForms.controls.birthday.invalid &&
+                    this.registerForms.controls.birthday.dirty"
+                    type="date" formControlName="birthday" class="form-control form-control-sm" id="birthday" placeholder="Password">
+                    <label for="birthday">Data de Nascimento</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <input
+                    
+                    [class.is-invalid]="this.registerForms.controls.country.invalid &&
+                    this.registerForms.controls.country.dirty" 
+                    type="text" formControlName="country" class="form-control form-control-sm" id="country" placeholder="Password">
+                    <label for="country">Pais</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <input 
+                    [class.is-invalid]="this.registerForms.controls.city.invalid &&
+                    this.registerForms.controls.city.dirty"
+                    type="text" formControlName="city" class="form-control form-control-sm" id="city" placeholder="Password">
+                    <label for="city">Estado</label>
+                </div>
+            </div>
+    
+        </div>
+        
+        
+    
+        <div class="form-floating mb-3">
+            <input
+            [class.is-invalid]="this.registerForms.controls.username.invalid &&
+            this.registerForms.controls.username.dirty"
+            type="text" formControlName="username" class="form-control form-control-sm" id="username" placeholder="Password">
+            <label for="username">Usuário</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input
+            [class.is-invalid]="this.registerForms.controls.email.invalid &&
+            this.registerForms.controls.email.dirty" 
+            type="text" formControlName="email" class="form-control form-control-sm" id="email" placeholder="Password">
+            <label for="email">Email</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+            <input 
+            [class.is-invalid]="this.registerForms.controls.password.invalid &&
+            this.registerForms.controls.password.dirty"
+            type="password" formControlName="password" class="form-control form-control-sm" id="password" placeholder="Password">
+            <label for="password">Senha</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input 
+            [class.is-invalid]="this.registerForms.controls.confirmationPassword.invalid &&
+            this.registerForms.controls.confirmationPassword.dirty" type="password" formControlName="confirmationPassword" class="form-control form-control-sm" id="confirmationPassword" placeholder="Password">
+            <label for="confirmationPassword">Confirmar Senha</label>
+        </div>
+        
+        <button type="submit" [disabled]="registerForms.invalid || loading" class="btn btn-lg btn-block btn-primary mt-3 w-100">Registrar</button>
+    </form>
+    
+    <a (click)="goToLogin()" class="mt-auto ms-auto click-go pointer"><small>Já possui uma conta? Entre!</small></a>
+</div>
+

@@ -1,0 +1,18 @@
+<div class="p-2 bg-custom d-flex align-items-center">
+    <img class="img-fluid" style="max-width: 150px;" src="../../../assets/logo2-removebg-preview.png" alt="logo">
+    <form [formGroup]="searchForms" (ngSubmit)="searchGroup()" class=" ms-auto w-50">
+        <input formControlName="search" type="text" class="form-control" id="exampleInputEmail1" placeholder="Busque grupos.">
+    </form>
+    <button (click)="editingUser(true)" class="btn ms-auto">
+         <fa-icon class="text-white" [icon]="faCog"></fa-icon>
+    </button>
+    <button (click)="signOut()" class="btn ms-2">
+        <fa-icon class="text-white" [icon]="faSignOutAlt"></fa-icon>
+    </button>
+   
+</div>
+
+
+<div *ngIf="isEditingUser"  class="position-absolute h-100 bg-white border border-left w-25" style="right: 0; top: 0; z-index: 9999;">
+    <app-edit-user (finishEditingUser)="editingUser($event)"></app-edit-user>
+</div>

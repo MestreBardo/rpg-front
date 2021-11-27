@@ -1,0 +1,30 @@
+<div class="p-3 d-flex h-100 flex-column w-100">
+    <div class="d-flex align-items-center">
+        <h3>Editar Grupo</h3>
+        <button (click)="finishEditingGroup.emit(false)" class="btn ms-auto">
+            <fa-icon  [icon]="faTimes" size="lg"></fa-icon>
+        </button>
+        
+    </div>
+    <hr>
+    <form [formGroup]="editGroupNameForms" class="d-flex flex-column" (ngSubmit)="editGroupName()">
+        <div class="form-floating mb-3">
+            <input
+            [class.is-invalid]="this.editGroupNameForms.controls.name.invalid &&
+            this.editGroupNameForms.controls.name.dirty"
+            type="text" formControlName="name" class="form-control form-control-sm" id="name" placeholder="name">
+            <label for="name">Nome</label>
+        </div>
+        <button type="submit" [disabled]="editGroupNameForms.invalid" class="btn btn-lg btn-block btn-primary w-100">Salvar</button>
+    </form>
+    <hr>
+    <form [formGroup]="editGroupInfoForms" (ngSubmit)="editGroupInfo()">
+        <div class="form-floating mb-3">
+            <div class="form-floating">
+                <textarea class="form-control" formControlName="description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
+                <label for="floatingTextarea2">Descrição</label>
+            </div>
+        </div>
+        <button type="submit" [disabled]="editGroupInfoForms.invalid" class="btn btn-lg btn-block btn-primary mt-auto w-100">Salvar</button>
+    </form>
+</div>

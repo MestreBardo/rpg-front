@@ -1,0 +1,137 @@
+<div class="p-3 d-flex h-100 flex-column w-100">
+    <div class="d-flex align-items-center">
+        <h3>Editar Usuário</h3>
+        <button (click)="finishEditingUser.emit(false)" class="btn ms-auto">
+            <fa-icon  [icon]="faTimes" size="lg"></fa-icon>
+        </button>
+        
+    </div>
+    <hr>
+    <ul class="nav nav-tabs mb-3">
+        <li 
+        (click)="goTo('username')" class="nav-item pointer">
+          <a
+          [class.active]="lookingFor === 'username'"  
+          class="nav-link">Usuário</a>
+        </li>
+        <li
+        (click)="goTo('password')" class="nav-item pointer">
+          <a
+          [class.active]="lookingFor === 'password'"  
+          class="nav-link">Senha</a>
+        </li>
+        <li
+        (click)="goTo('email')" class="nav-item pointer">
+          <a
+          [class.active]="lookingFor === 'email'"  
+          class="nav-link">Email</a>
+        </li>
+        <li
+        (click)="goTo('info')" class="nav-item pointer">
+          <a
+          [class.active]="lookingFor === 'info'"  
+          class="nav-link">Informações</a>
+        </li>
+    </ul>
+    <ng-container [ngSwitch]="lookingFor">
+        <form *ngSwitchCase="'username'" [formGroup]="editUserUsernameForms" class="d-flex flex-column" (ngSubmit)="editUserUsername()">
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserUsernameForms.controls.username.invalid &&
+                this.editUserUsernameForms.controls.username.dirty"
+                type="text" formControlName="username" class="form-control form-control-sm" id="name" placeholder="name">
+                <label for="name">Usuário</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserUsernameForms.controls.confirmationPassword.invalid &&
+                this.editUserUsernameForms.controls.confirmationPassword.dirty"
+                type="password" formControlName="confirmationPassword" class="form-control form-control-sm" id="confUsername" placeholder="name">
+                <label for="confUsername">Cofirmação de Senha</label>
+            </div>
+            <button type="submit" [disabled]="editUserUsernameForms.invalid" class="btn btn-lg btn-block btn-primary w-100">Salvar</button>
+        </form>
+        <form *ngSwitchCase="'password'" [formGroup]="editUserPasswordForms" class="d-flex flex-column" (ngSubmit)="editUserPassword()">
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserPasswordForms.controls.password.invalid &&
+                this.editUserPasswordForms.controls.password.dirty"
+                type="password" formControlName="password" class="form-control form-control-sm" id="password" placeholder="password">
+                <label for="password">Senha</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserPasswordForms.controls.confirmationPassword.invalid &&
+                this.editUserPasswordForms.controls.confirmationPassword.dirty"
+                type="password" formControlName="confirmationPassword" class="form-control form-control-sm" id="confPassword" placeholder="name">
+                <label for="confPassword">Cofirmação de Senha</label>
+            </div>
+            <button type="submit" [disabled]="editUserPasswordForms.invalid" class="btn btn-lg btn-block btn-primary w-100">Salvar</button>
+        </form>
+        <form  *ngSwitchCase="'email'" [formGroup]="editUserEmailForms" class="d-flex flex-column" (ngSubmit)="editUserEmail()">
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserEmailForms.controls.email.invalid &&
+                this.editUserEmailForms.controls.email.dirty"
+                type="email" formControlName="email" class="form-control form-control-sm" id="email" placeholder="email">
+                <label for="email">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserEmailForms.controls.confirmationPassword.invalid &&
+                this.editUserEmailForms.controls.confirmationPassword.dirty"
+                type="password" formControlName="confirmationPassword" class="form-control form-control-sm" id="confEmail" placeholder="name">
+                <label for="confEmail">Cofirmação de Senha</label>
+            </div>
+            <button type="submit" [disabled]="editUserEmailForms.invalid" class="btn btn-lg btn-block btn-primary w-100">Salvar</button>
+        </form>
+        <form *ngSwitchCase="'info'" [formGroup]="editUserInfoForms" (ngSubmit)="editUserInfo()">
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserInfoForms.controls.name.invalid &&
+                this.editUserInfoForms.controls.name.dirty"
+                type="text" formControlName="name" class="form-control form-control-sm" id="name" placeholder="name">
+                <label for="name">Nome</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserInfoForms.controls.surname.invalid &&
+                this.editUserInfoForms.controls.surname.dirty"
+                type="text" formControlName="surname" class="form-control form-control-sm" id="surname" placeholder="surname">
+                <label for="surname">Sobrenome</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserInfoForms.controls.birthday.invalid &&
+                this.editUserInfoForms.controls.birthday.dirty"
+                type="date" formControlName="birthday" class="form-control form-control-sm" id="birthday" placeholder="birthday">
+                <label for="birthday">Data de Nascimento</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserInfoForms.controls.gender.invalid &&
+                this.editUserInfoForms.controls.gender.dirty"
+                type="text" formControlName="gender" class="form-control form-control-sm" id="gender" placeholder="gender">
+                <label for="gender">Genêro</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserInfoForms.controls.city.invalid &&
+                this.editUserInfoForms.controls.city.dirty"
+                type="text" formControlName="city" class="form-control form-control-sm" id="city" placeholder="city">
+                <label for="city">Cidade</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input
+                [class.is-invalid]="this.editUserInfoForms.controls.confirmationPassword.invalid &&
+                this.editUserInfoForms.controls.confirmationPassword.dirty"
+                type="password" formControlName="confirmationPassword" class="form-control form-control-sm" id="confInfo" placeholder="name">
+                <label for="confInfo">Cofirmação de Senha</label>
+            </div>
+            <button type="submit" [disabled]="editUserInfoForms.invalid" class="btn btn-lg btn-block btn-primary mt-auto w-100">Salvar</button>
+        </form>
+    </ng-container>
+    
+</div>

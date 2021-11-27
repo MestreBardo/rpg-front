@@ -1,0 +1,22 @@
+<div class="border rounded" style="min-width: 120px;">
+    <div class="p-1 rounded-top bg-dark text-white d-flex align-items-center justify-content-center">
+        Contruir
+    </div>
+    <div class="d-flex flex-column">
+        <div (click)="create.emit('line')" class="p-1 option pointer d-flex align-items-center justify-content-center">
+            Linha
+        </div>
+        <hr class="m-0">
+        <div (click)="create.emit('text-enter')" class="p-1 option pointer px-2 d-flex align-items-center justify-content-center">
+            Entrada de Texto
+        </div>
+        <hr class="m-0">
+        <div (click)="create.emit('text-box')" class="p-1 option pointer px-2 d-flex align-items-center justify-content-center">
+            Caixa de Texto
+        </div>
+        <hr class="m-0">
+        <div (click)="create.emit('list')" class="p-1 option pointer px-2 d-flex align-items-center justify-content-center">
+            Lista
+        </div>
+    </div>
+</div>

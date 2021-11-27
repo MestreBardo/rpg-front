@@ -1,0 +1,26 @@
+<div class="d-flex px-5 h-100  flex-column">
+  <h1 class="mb-0 mt-auto">Login</h1>
+  <hr>
+  <form [formGroup]="loginForms" (ngSubmit)="login()">
+    <div class="form-floating mb-3">
+      <input 
+      [class.is-invalid]="this.loginForms.controls.login.invalid &&
+      this.loginForms.controls.login.dirty"
+      formControlName="login"
+      type="text"  class="form-control form-control-sm" id="login" placeholder="login">
+      <label for="login">Usuário/Email</label>
+    </div>
+    <div class="form-floating">
+      <input
+      [class.is-invalid]="this.loginForms.controls.password.invalid &&
+      this.loginForms.controls.password.dirty"
+      formControlName="password"
+      type="password" class="form-control form-control-sm" id="senha" placeholder="Password">
+      <label for="senha">Senha</label>
+    </div>
+    <button [disabled]="loginForms.invalid" type="submit" class="btn btn-lg btn-block btn-primary mt-3 w-100">Iniciar</button>
+  </form>
+
+  <a (click)="goToRegister()" class="mt-auto ms-auto click-go pointer"><small>Não possui uma conta?
+      Registre-se!</small></a>
+</div>
