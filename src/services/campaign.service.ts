@@ -32,6 +32,10 @@ export class CampaignService {
       )
     );
   }
+  
+  saveTemplate(campaignId: string, template: any) {
+    return this.http.patch(`http://localhost:4000/v1/campaigns/${campaignId}/template`, template);
+  }
 
   editCampaignName(campaignId: string, campaign: any) {
     return this.http.patch(`http://localhost:4000/v1/campaigns/${campaignId}/name`, campaign).pipe(

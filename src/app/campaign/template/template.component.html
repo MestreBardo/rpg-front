@@ -1,96 +1,8 @@
 <app-menu></app-menu>
 <div class="px-2 py-1 bg-light d-flex justify-content-between">
     <button class="btn"> < Retornar a Campanha</button>
-    <button class="btn btn-primary"> Salvar</button>
+    <button (click)="saveNewTemplate()" class="btn btn-primary"> Salvar</button>
 </div>
-
-
-
-<!-- <div class="container border mt-3">
-    <h1>CRIAR PERSONAGEM</h1>
-    <div class="row ">
-        <div class="col-12 ">
-            <label for="exampleInputEmail1" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-    </div>
-    <div class="row  mt-2">
-        <div class="col-3 ">
-            <label for="exampleInputEmail1" class="form-label">Raça</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="col-3 ">
-            <label for="exampleInputEmail1" class="form-label">Classe</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="col-3 ">
-            <label for="exampleInputEmail1" class="form-label">Jogador</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="col-3 ">
-            <label for="exampleInputEmail1" class="form-label">Experiencia</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-    </div>
-    <div class="row ">
-        <div class="col-6 ">
-            <label for="exampleInputEmail1" class="form-label">Atributos</label>
-            <div class="row ">
-                <div class="col-12 ">
-                    <label for="exampleInputEmail1" class="form-label">Força</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-12 ">
-                    <label for="exampleInputEmail1" class="form-label">Destreza</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-12 ">
-                    <label for="exampleInputEmail1" class="form-label">Inteligencia</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-12 ">
-                    <label for="exampleInputEmail1" class="form-label">Sabedoria</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-12 ">
-                    <label for="exampleInputEmail1" class="form-label">Carisma</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-            </div>
-        </div>
-        <div class="col-6 ">
-            <label for="exampleInputEmail1" class="form-label">Lista de itens</label>
-            <input type="text" class="form-control mt-1" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <input type="text" class="form-control mt-1" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <input type="text" class="form-control mt-1" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <input type="text" class="form-control mt-1" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <input type="text" class="form-control mt-1" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <button class="btn btn-secondary my-2">Adicionar linha</button>
-        </div>
-    </div>
-    <div class="row ">
-        <div class="col-12 ">
-            <label for="exampleInputEmail1" class="form-label">Historia</label>
-            <textarea type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
-        </div>
-    </div>
-    <div class="row ">
-        <div class="col-12 ">
-            <label for="exampleInputEmail1" class="form-label">Personalidade</label>
-            <textarea type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
-        </div>
-    </div>
-    
-</div> -->
-
 
 <div class="container border mt-3">
     <div class="row">
@@ -112,5 +24,3 @@
     [style.left]="columnConstructorPosition[1]">
     <app-column-constructor (create)="createOnColumn($event)"></app-column-constructor>
 </div>
-
-<button (click)="log('c')">teste</button>

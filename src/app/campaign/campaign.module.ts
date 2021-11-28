@@ -16,6 +16,10 @@ import { TemplateComponent } from './template/template.component';
 import { RowConstructorComponent } from './template/row-constructor/row-constructor.component';
 import { ColumnConstructorComponent } from './template/column-constructor/column-constructor.component';
 import { TemplateRenderComponent } from './template/template-render/template-render.component';
+import { InputRenderComponent } from './template/input-render/input-render.component';
+import { TextRenderComponent } from './template/text-render/text-render.component';
+import { ListRenderComponent } from './template/list-render/list-render.component';
+import { InputComponent } from './template/list-render/input/input.component';
 
 
 
@@ -32,7 +36,11 @@ import { TemplateRenderComponent } from './template/template-render/template-ren
     TemplateComponent,
     RowConstructorComponent,
     ColumnConstructorComponent,
-    TemplateRenderComponent
+    TemplateRenderComponent,
+    InputRenderComponent,
+    TextRenderComponent,
+    ListRenderComponent,
+    InputComponent
   ],
   imports: [
     CommonModule,
