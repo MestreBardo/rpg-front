@@ -1,11 +1,20 @@
 
 <ng-container [ngSwitch]="toRender.type">
-    <div (click)="openRow($event)" class="border column-maker bg-white" style="min-height: 20px;" *ngSwitchCase="'column'" [class]="'template' + toRender.index">
-        <app-template-render *ngFor="let children of toRender.childrens"  [toRender]="children"></app-template-render>
+    <div (click)="openRow($event)" class="border column-maker bg-white pb-4" style="min-height: 20px;" *ngSwitchCase="'column'" [class]="'template' + toRender.index">
+        <app-template-render *ngFor="let children of toRender.childrens;"  [toRender]="children"></app-template-render>
+    </div>
+    <div class="border column-maker bg-white" style="min-height: 20px;" *ngSwitchCase="'input'" [class]="'template' + toRender.index">
+        <app-input-render [field]="toRender"></app-input-render>
+    </div>
+    <div class="border column-maker bg-white" style="min-height: 20px;" *ngSwitchCase="'text'" [class]="'template' + toRender.index">
+        <app-text-render [field]="toRender"></app-text-render>
+    </div>
+    <div class="border column-maker bg-white" style="min-height: 20px;" *ngSwitchCase="'list'" [class]="'template' + toRender.index">
+        <app-list-render [field]="toRender"></app-list-render>
     </div>
     <div (click)="openColumn($event)" class="border row bg-white" style="min-height: 20px;"  *ngSwitchCase="'row'" [class]="'template' + toRender.index">
-        <div *ngFor="let children of toRender.childrens" [class]="'col-' + children.size">
-            <app-template-render  [toRender]="children"></app-template-render>
+        <div *ngFor="let children of toRender.childrens; let i = index" [class]="'col-' + children.size">
+            <app-template-render (removeElemnt)="removeElement(i)" [toRender]="children"></app-template-render>
         </div>
     </div>
 </ng-container>

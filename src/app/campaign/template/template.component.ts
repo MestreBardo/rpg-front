@@ -1,3 +1,6 @@
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
+import { CampaignService } from './../../../services/campaign.service';
 import { TemplateService } from './../../../services/template.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,6 +16,7 @@ export class TemplateComponent implements OnInit {
   columnConstructorPosition = ["0px","0px"];
   indexSolicited = 0;
   sonIndexSolicited = 0;
+  campaignId = "";
 
   template = {
     type: "column",
@@ -23,7 +27,10 @@ export class TemplateComponent implements OnInit {
     ],
     actualIndex: 1,
   }
-  constructor(private templateService: TemplateService) { 
+  constructor(private templateService: TemplateService, private campaignService: CampaignService, private activeRoute: ActivatedRoute, private toaster: ToastrService) { 
+    this.activeRoute.params.subscribe(params => {
+      this.campaignId = params.id;
+    });
     this.templateService.showConstructor.subscribe(evento => {
       this.indexSolicited = evento.index;
       switch(evento.type) {
@@ -53,10 +60,17 @@ export class TemplateComponent implements OnInit {
     this.columnConstructorEnabled = true;
   }
 
+  saveNewTemplate() {
+    this.campaignService.saveTemplate(this.campaignId, this.template).subscribe(
+      (response) => { this.toaster.success("Template salvo com sucesso!"); },
+      (error) => { this.toaster.error("Erro ao salvar template!"); }
+    );
+  }
+
 
   createOnColumn(evento: any) {
     this.template.actualIndex++;
-    switch (evento) {
+    switch (evento.type) {
       case "line":
         this.templateService.createOn.emit({
           toCreate: {
@@ -73,9 +87,43 @@ export class TemplateComponent implements OnInit {
         this.templateService.createOn.emit({
           toCreate: {
             type: "column",
-            size: "6",
+            size: evento.size,
             childrens: [
             ],
+            index: this.template.actualIndex,
+          },
+          index: this.indexSolicited,
+        });
+        break;
+      case "input":
+        this.templateService.createOn.emit({
+          toCreate: {
+            type: "input",
+            label: "default",
+            inputed: "",
+            typeInput: "text",
+            index: this.template.actualIndex,
+          },
+          index: this.indexSolicited,
+        });
+        break;
+      case "text":
+          this.templateService.createOn.emit({
+            toCreate: {
+              type: "text",
+              inputed: "",
+              label: "default",
+              index: this.template.actualIndex,
+            },
+            index: this.indexSolicited,
+          });
+          break;
+      case "list":
+        this.templateService.createOn.emit({
+          toCreate: {
+            type: "list",
+            label: "default",
+            items: [],
             index: this.template.actualIndex,
           },
           index: this.indexSolicited,
