@@ -16,6 +16,8 @@ import { TemplateComponent } from './template/template.component';
 import { RowConstructorComponent } from './template/row-constructor/row-constructor.component';
 import { ColumnConstructorComponent } from './template/column-constructor/column-constructor.component';
 import { TemplateRenderComponent } from './template/template-render/template-render.component';
+import { SessionCardModule } from '../shared/session-card/session-card.module';
+
 
 
 
@@ -40,7 +42,8 @@ import { TemplateRenderComponent } from './template/template-render/template-ren
     MenuModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SessionCardModule
   ]
 })
 export class CampaignModule { }

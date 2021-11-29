@@ -64,6 +64,36 @@ export class GroupComponent implements OnInit, OnDestroy {
       });    
   };
 
+  joinGroup(){
+    this.groupService.joinGroup(this.groupId).subscribe((received: any) => {
+      this.group = {
+        id: received.data._id,
+        name: received.data.name,
+        description: received.data.description,
+        userCount: received.data.userCount,
+        isPublic: received.data.isPublic,
+        createdAt: received.data.createdAt,
+        owner: received.data.owner,
+      };
+      this.me = received.data.me;
+    });
+  }
+
+  leaveGroup(){
+    this.groupService.leaveGroup(this.groupId).subscribe((received: any) => {
+      this.group = {
+        id: received.data._id,
+        name: received.data.name,
+        description: received.data.description,
+        userCount: received.data.userCount,
+        isPublic: received.data.isPublic,
+        createdAt: received.data.createdAt,
+        owner: received.data.owner,
+      };
+      this.me = received.data.me;
+    });
+  }
+
   editingGroup(received: any) {
     this.isEditingGroup = received;
   }

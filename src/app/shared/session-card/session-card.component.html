@@ -1,0 +1,19 @@
+<!-- <div *ngIf="session" class="card d-flex pointer" style="min-height: 286px;">
+    <div class="card-body d-flex flex-column">
+        <fa-icon class="mt-auto" size="4x" [icon]="faUsers"></fa-icon>
+        <p class="mb-0 mt-auto">{{session.sessionDate | date: 'dd/MM/yyyy'}}</p>
+
+    </div>
+</div> -->
+
+<div class="border rounded p-2">
+    <h4><fa-icon [icon]="faCalendar"></fa-icon> {{session.sessionDate | date: 'dd/MM/yyyy'}}</h4>
+    <div class="d-flex align-items-center justify-content-end">
+        <ng-container>
+            <!-- <button *ngIf="member.userId !== userSigned.user" [disabled]="member.role === 'owner' || userSigned.role === 'admin'" class="btn btn-sm btn-outline-primary ms-2" (click)="promoteMember(member)"><fa-icon [icon]="faArrowUp"></fa-icon></button> -->
+            <button class="btn btn-sm btn-outline-warning ms-2" (click)="editSession()"><fa-icon [icon]="faArrowDown"></fa-icon></button>
+            <button class="btn btn-sm btn-outline-danger ms-2" (click)="cancelSession()"><fa-icon [icon]="faTrash"></fa-icon></button>
+        </ng-container>
+        
+    </div>
+</div>

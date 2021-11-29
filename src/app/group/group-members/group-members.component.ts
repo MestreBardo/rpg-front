@@ -11,7 +11,10 @@ export class GroupMembersComponent implements OnInit {
   @Input() groupId: any;
   @Input() me: any;
   members: any[] = [];
-  constructor(private groupService: GroupsService, private toaster: ToastrService) { }
+  constructor(private groupService: GroupsService, private toaster: ToastrService) {
+    this.groupService.userGroupJoined.subscribe((received: any) => this.members.push(received))
+    this.groupService.userGroupRemoved.subscribe((received: any) => this.members = this.members.filter(f => f.userId !== received))
+   }
 
   ngOnInit(): void {
     this.groupService.getGroupMembers(this.groupId).subscribe(

@@ -22,7 +22,6 @@ export class CampaignCardComponent implements OnInit {
   goToCampaign() {
     
     const id = this.campaign["_id"] || this.campaign.id
-    console.log(id);
     this.router.navigate(['/campaign', id]);
   }
 

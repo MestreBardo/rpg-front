@@ -3,11 +3,11 @@
     <div class="p-5 position-relative bg-light rounded-3 mt-3 custom-bg-image">
       <div class="position-absolute d-flex" style="top: 10px;right: 10px;">
         <ng-container *ngIf="!me">
-          <button class="btn btn-info text-white ms-2"><fa-icon [icon]="faSignOutAlt"></fa-icon></button>
+          <button class="btn btn-info text-white ms-2" (click)="joinGroup()"><fa-icon [icon]="faSignOutAlt"></fa-icon></button>
         </ng-container>
         <ng-container *ngIf="me">
           <button (click)="editingGroup(true)" class="btn btn-info text-white"><fa-icon [icon]="faPencilAlt"></fa-icon></button>
-          <button class="btn btn-danger ms-2"><fa-icon [icon]="faSignOutAlt"></fa-icon></button>
+          <button *ngIf="me.role !== 'owner'" (click)="leaveGroup()"  class="btn btn-danger ms-2"><fa-icon [icon]="faSignOutAlt"></fa-icon></button>
         </ng-container>
         
       </div>

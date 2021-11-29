@@ -1,7 +1,7 @@
 <div class="container-fluid mt-3">
     <div class="row">
         <div *ngFor="let member of members" class="col-3 mb-2">
-            <app-member-card [member]="member" [userSigned]="me"></app-member-card>
+            <app-member-card [member]="member" [groupId]="groupId" [userSigned]="me"></app-member-card>
         </div>
     </div>
 </div>

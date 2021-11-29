@@ -31,10 +31,9 @@ export class EditCampaignComponent implements OnInit {
     description: ['', [Validators.required, Validators.minLength(3)]],
   })
   ngOnInit(): void {
-    console.log(this.campaign);
     this.editCampaignNameForms.controls.name.setValue(this.campaign.name);
     this.editCampaignNameForms.controls.group.setValue(this.campaign.group);
-    this.editCampaignInfoForms.controls.system.setValue(this.campaign.description);
+    this.editCampaignInfoForms.controls.system.setValue(this.campaign.system);
     this.editCampaignInfoForms.controls.description.setValue(this.campaign.description);
   }
 
@@ -42,7 +41,6 @@ export class EditCampaignComponent implements OnInit {
   editGroupName() {
     this.campaignService.editCampaignName(this.campaign.id, this.editCampaignNameForms.value).subscribe(
       (res: any) => {
-        console.log(res);
         this.toaster.success(`Campanha editada`, "Sucesso");
       },
       (err: any) => {
@@ -54,7 +52,6 @@ export class EditCampaignComponent implements OnInit {
   editGroupInfo() {
     this.campaignService.editCampaignInfo(this.campaign.id, this.editCampaignInfoForms.value).subscribe(
       (res: any) => {
-        console.log(res);
         this.toaster.success(`Campanha editado`, "Sucesso");
       },
       (err: any) => {

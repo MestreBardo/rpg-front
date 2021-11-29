@@ -1,5 +1,11 @@
 <div class="p-3 d-flex h-100 flex-column w-100">
-    <h3>Criar Novo Grupo</h3>
+    <div class="d-flex align-items-center">
+        <h3>Criar Novo Grupo</h3>
+        <button (click)="finishCreatingGroup.emit(false)" class="btn ms-auto">
+            <fa-icon  [icon]="faTimes" size="lg"></fa-icon>
+        </button>
+        
+    </div>
     <hr>
     <form [formGroup]="createGroupForms" class="h-100 d-flex flex-column" (ngSubmit)="criarGrupo()">
         <div class="form-floating mb-3">

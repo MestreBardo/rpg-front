@@ -1,1 +1,22 @@
-<p>campaign-sessions works!</p>
+<div class="row mt-3">
+    <div class="col-12 col-md-3 col-lg-2 mb-3">
+
+        <div (click)="initCreatingSession.emit(true)" class="border rounded pointer p-2">
+            <div class="d-flex align-items-center justify-content-center">
+                <fa-icon class="mt-auto" size="2x" [icon]="faPlus"></fa-icon>
+            </div>
+            <div class="d-flex align-items-center justify-content-center">
+                <h5>Criar Nova Sessão</h5>
+            </div>
+        </div>
+
+        <!-- <div (click)="initCreatingSession.emit(true)" class="card p-3 h-100 pointer d-flex align-items-center"
+            style="min-height: 286px;">
+            <fa-icon class="mt-auto" size="4x" [icon]="faPlus"></fa-icon>
+            <p class="mb-0 mt-auto">Criar Nova Sessão</p>
+        </div> -->
+    </div>
+    <div *ngFor="let session of sessions" class="col-12 col-md-3 col-lg-2 mb-3">
+        <app-session-card [session]="session"></app-session-card>
+    </div>
+</div>
