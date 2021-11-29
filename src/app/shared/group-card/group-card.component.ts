@@ -20,7 +20,6 @@ export class GroupCardComponent implements OnInit {
   }
 
   goToGroup() {
-    console.log(this.group);
     this.router.navigate(['/group', this.group._id || this.group.id]);
   }
 

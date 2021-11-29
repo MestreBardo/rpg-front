@@ -55,8 +55,8 @@
         </li>
     </ul>
     <ng-container *ngIf="campaign.id" [ngSwitch]="lookingFor">
-        <!-- <app-group-members [groupId]="group.id" [me]="me" *ngSwitchCase="'members'"></app-group-members>
-        <app-group-campaigns (initCreatingCampaign)="creatingCampaign($event)" [groupId]="group.id" *ngSwitchCase="'campaigns'"></app-group-campaigns> -->
+        <!-- <app-group-members [groupId]="group.id" [me]="me" *ngSwitchCase="'members'"></app-group-members> -->
+        <app-campaign-sessions (initCreatingSession)="creatingSession($event)" [campaignId]="campaign.id" *ngSwitchCase="'sessions'"></app-campaign-sessions>
     </ng-container>
 </div>
 
@@ -64,6 +64,6 @@
   <app-edit-campaign [campaign]="campaign" (finishEditingCampaign)="editingCampaign($event)"></app-edit-campaign>
 </div>
 
-<!-- <div *ngIf="isCreatingCampaign"  class="position-absolute h-100 bg-white border border-left w-25" style="right: 0; top: 0;">
-  <app-create-campaign [groupId]="group.id" (finishCreatingCampaign)="creatingCampaign($event)"></app-create-campaign>
-</div> -->
+<div *ngIf="isCreatingSession"  class="position-absolute h-100 bg-white border border-left w-25" style="right: 0; top: 0;">
+  <app-add-session [campaignId]="campaign.id" (finishCreatingSession)="creatingSession($event)"></app-add-session>
+</div>

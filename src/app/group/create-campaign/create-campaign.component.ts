@@ -31,7 +31,6 @@ export class CreateCampaignComponent implements OnInit {
         this.finishCreatingCampaign.emit(false);
       },
       error => {
-        console.log(error);
         this.toaster.error("Error creating campaign");
       }
     )

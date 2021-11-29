@@ -38,8 +38,6 @@ export class SearchComponent implements OnInit {
             joinedAt: data.me?.joinedAt || null
           }
         })
-
-        console.log(this.groups);
       }
     );
   }

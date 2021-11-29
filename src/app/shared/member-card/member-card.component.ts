@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faTrash, faCalendar, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { GroupsService } from 'src/services/groups.service';
 
 @Component({
   selector: 'app-member-card',
@@ -9,14 +10,30 @@ import { faTrash, faCalendar, faArrowDown, faArrowUp } from '@fortawesome/free-s
 export class MemberCardComponent implements OnInit {
   @Input() member: any;
   @Input() userSigned: any;
+  @Input() groupId: any;
   faTrash = faTrash;
   faCalendar = faCalendar;
   faArrowDown = faArrowDown;
   faArrowUp = faArrowUp;
-  constructor() { }
+  constructor(private groupService: GroupsService) { }
 
   ngOnInit(): void {
-    console.log(this.userSigned);
+  }
+
+  removeMember(memberId: string){
+    this.groupService.removeMember(memberId)
+  }
+
+  promoteMember(member: any){
+    this.groupService.promoteMember(this.groupId, member.id).subscribe((received: any) => {
+      member.role = 'admin'
+    })
+  }
+
+  demoteMember(member: any){
+    this.groupService.demoteMember(this.groupId, member.id).subscribe((received: any) => {
+      member.role = 'user'
+    })
   }
 
 }

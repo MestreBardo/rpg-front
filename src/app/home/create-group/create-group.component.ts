@@ -2,7 +2,7 @@ import { GroupsService } from './../../../services/groups.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-create-group',
   templateUrl: './create-group.component.html',
@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CreateGroupComponent implements OnInit {
 
   @Output() finishCreatingGroup = new EventEmitter<any>();
+  faTimes = faTimes;
   constructor(
     private formBuilder: FormBuilder,
     private toaster: ToastrService,
@@ -27,7 +28,6 @@ export class CreateGroupComponent implements OnInit {
   criarGrupo() {
     this.groupsService.createGroup(this.createGroupForms.value).subscribe(
       (res: any) => {
-        console.log(res);
         this.toaster.success(`${res.data.name} criado`, "Sucesso");
         this.finishCreatingGroup.emit(false);
       },

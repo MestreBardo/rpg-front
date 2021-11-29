@@ -14,6 +14,11 @@ export class CampaignService {
   getCampaign(campaignId: string) {
     return this.http.get(`http://localhost:4000/v1/campaigns/${campaignId}`);
   };
+
+  getCampaignSessions(campaignId: string) {
+    return this.http.get(`http://localhost:4000/v1/campaigns/${campaignId}/sessions`);
+  }
+
   createCampaign(campaign: any) {
     return this.http.post('http://localhost:4000/v1/campaigns', campaign).pipe(
       tap(

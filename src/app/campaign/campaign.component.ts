@@ -21,6 +21,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
   faSignOutAlt = faSignOutAlt;
   campaignId: string = "";
   isEditingCampaign: boolean = false;
+  isCreatingSession: boolean = false;
   lookingFor: string = "players";
   me: any = {}
   campaign: any = {name: "Default Name", description: "Default Description", userCount: 0, isPublic: true, master: {username: "Default Username"}};
@@ -67,6 +68,10 @@ export class CampaignComponent implements OnInit, OnDestroy {
 
   editingCampaign(received: any) {
     this.isEditingCampaign = received;
+  }
+
+  creatingSession(received: any){
+    this.isCreatingSession = received;
   }
 
   ngOnDestroy() {

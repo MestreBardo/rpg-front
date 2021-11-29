@@ -35,7 +35,6 @@ export class EditGroupComponent implements OnInit {
   editGroupName() {
     this.groupsService.editGroupName(this.group.id, this.editGroupNameForms.value).subscribe(
       (res: any) => {
-        console.log(res);
         this.toaster.success(`Grupo editado`, "Sucesso");
       },
       (err: any) => {
@@ -47,7 +46,6 @@ export class EditGroupComponent implements OnInit {
   editGroupInfo() {
     this.groupsService.editGroupInfo(this.group.id, this.editGroupInfoForms.value).subscribe(
       (res: any) => {
-        console.log(res);
         this.toaster.success(`Grupo editado`, "Sucesso");
       },
       (err: any) => {

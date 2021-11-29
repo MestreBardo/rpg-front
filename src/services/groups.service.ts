@@ -10,6 +10,8 @@ export class GroupsService {
   constructor(private http: HttpClient) { }
   groupCreated = new EventEmitter<any>();
   groupUpdated = new EventEmitter<any>();
+  userGroupJoined = new EventEmitter<any>();
+  userGroupRemoved = new EventEmitter<any>();
   getUserSignedGroups() {
     return this.http.get('http://localhost:4000/v1/users/groups');
   }
@@ -17,7 +19,48 @@ export class GroupsService {
   getGroup(groupId: string) {
     return this.http.get(`http://localhost:4000/v1/groups/${groupId}`);
   }
+
+  joinGroup(groupId: string) {
+    return this.http.patch(`http://localhost:4000/v1/groups/${groupId}/join`, {}).pipe(tap(
+      (res: any) => {
+        const {newMember} = res.data
+        this.userGroupJoined.emit(
+          {
+            id: newMember._id,
+            userId: newMember.user._id,
+            username: newMember.user.username,
+            joinedAt: newMember.joinedAt,
+            role: newMember.role
+          }
+        );
+
+      }
+    ));
+  }
   
+  leaveGroup(groupId: string) {
+    return this.http.delete(`http://localhost:4000/v1/groups/${groupId}/leave`).pipe(tap(
+      (res: any) => {
+        this.userGroupRemoved.emit(res.data.removedUser);
+      }
+    ));
+  }
+
+  removeMember(memberId: string){
+    return this.http.delete(`http://localhost:4000/v1/members/${memberId}`).pipe(tap(
+      (res: any) => {
+        this.userGroupRemoved.emit(res.data.removedUser);
+      }
+    ));
+  }
+
+  removeGroup(groupId: string) {
+    return this.http.delete(`http://localhost:4000/v1/groups/${groupId}/leave`).pipe(tap(
+      (res: any) => {
+        this.userGroupRemoved.emit(res.data.removedUser);
+      }
+    ));
+  }
 
   createGroup(group: any) {
     return this.http.post('http://localhost:4000/v1/groups', group).pipe(
@@ -89,4 +132,11 @@ export class GroupsService {
     return this.http.get(`http://localhost:4000/v1/groups/${groupId}/campaigns`);
   }
 
+  promoteMember(groupId: string, memberId: string){
+    return this.http.patch(`http://localhost:4000/v1/groups/${groupId}/promote/${memberId}`, {})
+  }
+  
+  demoteMember(groupId: string, memberId: string){
+    return this.http.patch(`http://localhost:4000/v1/groups/${groupId}/demote/${memberId}`, {})
+  }
 }

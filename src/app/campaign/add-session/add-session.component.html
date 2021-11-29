@@ -1,1 +1,19 @@
-<p>add-session works!</p>
+<div class="p-3 d-flex h-100 flex-column w-100">
+    <div class="d-flex align-items-center">
+        <h3>Marcar Sessão</h3>
+        <button (click)="finishCreatingSession.emit(false)" class="btn ms-auto">
+            <fa-icon [icon]="faTimes" size="lg"></fa-icon>
+        </button>
+
+    </div>
+
+    <hr>
+    <form [formGroup]="createSessionForm" class="d-flex flex-column" (ngSubmit)="createCampaign()">
+        <div class="form-floating mb-3">
+            <input type="date" formControlName="sessionDate" class="form-control form-control-sm" id="sessionDate"
+                placeholder="sessionDate">
+            <label for="sessionDate">Data</label>
+        </div>
+        <button type="submit" class="btn btn-lg btn-block btn-primary mt-auto w-100">Salvar</button>
+    </form>
+</div>

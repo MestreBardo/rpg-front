@@ -20,6 +20,8 @@ import { InputRenderComponent } from './template/input-render/input-render.compo
 import { TextRenderComponent } from './template/text-render/text-render.component';
 import { ListRenderComponent } from './template/list-render/list-render.component';
 import { InputComponent } from './template/list-render/input/input.component';
+import { SessionCardModule } from '../shared/session-card/session-card.module';
+
 
 
 
@@ -48,7 +50,8 @@ import { InputComponent } from './template/list-render/input/input.component';
     MenuModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SessionCardModule
   ]
 })
 export class CampaignModule { }

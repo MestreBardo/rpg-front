@@ -1,6 +1,6 @@
 <div class="p-3 d-flex h-100 flex-column w-100">
     <div class="d-flex align-items-center">
-        <h3>Marcar Sessão</h3>
+        <h3>Editar Campanha</h3>
         <button (click)="finishEditingCampaign.emit(false)" class="btn ms-auto">
             <fa-icon  [icon]="faTimes" size="lg"></fa-icon>
         </button>
@@ -8,13 +8,7 @@
     </div>
     
     <hr>
-    <div class="form-floating mb-3">
-        <input
-        type="date" class="form-control form-control-sm" id="name" placeholder="name">
-        <label for="name">Data</label>
-    </div>
-    <button type="submit" class="btn btn-lg btn-block btn-primary mt-auto w-100">Salvar</button>
-    <!-- <form [formGroup]="editCampaignNameForms" class="d-flex flex-column" (ngSubmit)="editGroupName()">
+    <form [formGroup]="editCampaignNameForms" class="d-flex flex-column" (ngSubmit)="editGroupName()">
         <div class="form-floating mb-3">
             <input
             [class.is-invalid]="this.editCampaignNameForms.controls.name.invalid &&
@@ -22,7 +16,7 @@
             type="text" formControlName="name" class="form-control form-control-sm" id="name" placeholder="name">
             <label for="name">Nome</label>
         </div>
-        <button type="submit" [disabled]="editCampaignNameForms.invalid" class="btn btn-lg btn-block btn-primary w-100">Salvar</button>
+        <!-- <button type="submit" [disabled]="editCampaignNameForms.invalid" class="btn btn-lg btn-block btn-primary w-100">Salvar</button> -->
     </form>
     <hr>
     <form [formGroup]="editCampaignInfoForms" (ngSubmit)="editGroupInfo()">
@@ -40,5 +34,5 @@
             </div>
         </div>
         <button type="submit" [disabled]="editCampaignInfoForms.invalid" class="btn btn-lg btn-block btn-primary mt-auto w-100">Salvar</button>
-    </form> -->
+    </form>
 </div>
