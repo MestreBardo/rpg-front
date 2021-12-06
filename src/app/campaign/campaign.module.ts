@@ -1,3 +1,4 @@
+import { PlayerCardModule } from './../shared/player-card/player-card.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MenuModule } from './../shared/menu/menu.module';
@@ -21,6 +22,7 @@ import { TextRenderComponent } from './template/text-render/text-render.componen
 import { ListRenderComponent } from './template/list-render/list-render.component';
 import { InputComponent } from './template/list-render/input/input.component';
 import { SessionCardModule } from '../shared/session-card/session-card.module';
+import { AddPlayerComponent } from './add-player/add-player.component';
 
 
 
@@ -42,7 +44,8 @@ import { SessionCardModule } from '../shared/session-card/session-card.module';
     InputRenderComponent,
     TextRenderComponent,
     ListRenderComponent,
-    InputComponent
+    InputComponent,
+    AddPlayerComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +54,8 @@ import { SessionCardModule } from '../shared/session-card/session-card.module';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    SessionCardModule
+    SessionCardModule,
+    PlayerCardModule
   ]
 })
 export class CampaignModule { }

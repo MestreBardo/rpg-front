@@ -1,0 +1,11 @@
+<div class="border rounded p-2">
+    <h4>{{member.user.username | titlecase}}</h4>
+    <div class="d-flex align-items-center">
+        <small> {{member.joinedAt | date: "dd/MM/yyyy"}} <fa-icon [icon]="faCalendar"></fa-icon></small>
+        <small class="badge bg-dark ms-auto">{{member.role | titlecase}}</small>
+        <ng-container *ngIf="userSigned">
+           <button *ngIf="member.userId !== userSigned.user" [disabled]="member.role === 'master' || userSigned.role !== 'user' " class="btn btn-sm btn-outline-danger ms-2" (click)="removePlayer(member.id)"><fa-icon [icon]="faTrash"></fa-icon></button>
+        </ng-container>
+        
+    </div>
+</div>

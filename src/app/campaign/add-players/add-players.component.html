@@ -1,1 +1,30 @@
-<p>add-players works!</p>
+<div class="p-3 d-flex h-100 flex-column w-100">
+    <div class="d-flex align-items-center">
+        <h3>Adicionar Jogadores</h3>
+        <button (click)="finishAddingPlayers.emit(false)" class="btn ms-auto">
+            <fa-icon [icon]="faTimes" size="lg"></fa-icon>
+        </button>
+
+    </div>
+
+    <hr>
+    <form [formGroup]="searchPlayersForms" class="d-flex flex-column" (ngSubmit)="searchPlayers()">
+        <div class="form-floating mb-3">
+            <input type="text" formControlName="username" class="form-control form-control-sm" id="username"
+                placeholder="Busque o usuário">
+            <label for="sessionDate">Buscar Usuários</label>
+        </div>
+        <button type="submit" class="btn btn-lg btn-block btn-primary mt-auto w-100">Buscar</button>
+    </form>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div *ngFor="let found of foundedUsers" class="col-12 mt-2">
+                <div class="rounded border p-2 d-flex">
+                    <p class="mb-0">{{found.user.username}}</p>
+                    <button (click)="addPlayer(found.user._id)" class="ms-auto btn btn-sm btn-primary"><fa-icon [icon]="faPlus"></fa-icon></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

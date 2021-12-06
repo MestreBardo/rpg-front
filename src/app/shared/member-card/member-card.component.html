@@ -4,9 +4,9 @@
         <small> {{member.joinedAt | date: "dd/MM/yyyy"}} <fa-icon [icon]="faCalendar"></fa-icon></small>
         <small class="badge bg-dark ms-auto">{{member.role | titlecase}}</small>
         <ng-container *ngIf="userSigned">
-            <button *ngIf="member.userId !== userSigned.user" [disabled]="member.role === 'owner' || userSigned.role === 'admin'" class="btn btn-sm btn-outline-primary ms-2" (click)="promoteMember(member)"><fa-icon [icon]="faArrowUp"></fa-icon></button>
-            <button *ngIf="member.userId !== userSigned.user" [disabled]="member.role === 'owner' || userSigned.role === 'user'" class="btn btn-sm btn-outline-warning ms-2" (click)="demoteMember(member)"><fa-icon [icon]="faArrowDown"></fa-icon></button>
-            <button *ngIf="member.userId !== userSigned.user" [disabled]="member.role === 'owner' || userSigned.role === 'user'" class="btn btn-sm btn-outline-danger ms-2" (click)="removeMember(member.id)"><fa-icon [icon]="faTrash"></fa-icon></button>
+            <button *ngIf="member.userId !== userSigned.user" [disabled]="member.role === 'owner' || userSigned.role === 'admin' || member.role === 'admin'" class="btn btn-sm btn-outline-primary ms-2" (click)="promoteMember(member)"><fa-icon [icon]="faArrowUp"></fa-icon></button>
+            <button *ngIf="member.userId !== userSigned.user" [disabled]="member.role === 'owner' || userSigned.role === 'user' || member.role === 'user'" class="btn btn-sm btn-outline-warning ms-2" (click)="demoteMember(member)"><fa-icon [icon]="faArrowDown"></fa-icon></button>
+            <button *ngIf="member.userId !== userSigned.user" [disabled]="member.role === 'owner' || userSigned.role === 'user' " class="btn btn-sm btn-outline-danger ms-2" (click)="removeMember(member.id)"><fa-icon [icon]="faTrash"></fa-icon></button>
         </ng-container>
         
     </div>

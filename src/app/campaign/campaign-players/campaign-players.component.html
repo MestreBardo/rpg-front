@@ -1,1 +1,14 @@
-<p>campaign-players works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-3 col-lg-2 mb-3 mt-2">
+            <div (click)="initAddingPlayers.emit(true)" class="card p-3 h-100 pointer d-flex align-items-center" style="min-height: 100px;">
+                <fa-icon class="mt-auto" size="2x" [icon]="faPlus"></fa-icon>
+                <p class="mb-0 mt-auto">Adicionar Jogadores</p>
+            </div>
+        </div>
+        <div *ngFor="let player of players" class="col-12 col-md-3 col-lg-2 mb-3 mt-2">
+            <app-player-card [member]="player" [campaignId]="campaignId" [userSigned]="me"></app-player-card>
+        </div>
+
+    </div>
+</div>

@@ -19,6 +19,10 @@ export class CampaignService {
     return this.http.get(`http://localhost:4000/v1/campaigns/${campaignId}/sessions`);
   }
 
+  getCampaignPlayers(campaignId: string) {
+    return this.http.get(`http://localhost:4000/v1/campaigns/${campaignId}/players`);
+  };
+
   createCampaign(campaign: any) {
     return this.http.post('http://localhost:4000/v1/campaigns', campaign).pipe(
       tap(
@@ -36,6 +40,15 @@ export class CampaignService {
         },
       )
     );
+  }
+
+
+  addPlayerToCampaign(campaignId: string, user: string) {
+    return this.http.post(`http://localhost:4000/v1/campaigns/${campaignId}/player`, { user });
+  }
+
+  verifyPlayersCampaign(campaignId: string, username: string) {
+    return this.http.get(`http://localhost:4000/v1/campaigns/${campaignId}/verify?username=${username}`);
   }
   
   saveTemplate(campaignId: string, template: any) {

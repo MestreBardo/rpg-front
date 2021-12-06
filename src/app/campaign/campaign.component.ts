@@ -12,6 +12,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class CampaignComponent implements OnInit, OnDestroy {
 
   subscribedServices: any[] = [];
+  isAddingPlayer = false;
   faCalendar = faCalendar;
   faUnlockAlt = faUnlockAlt;
   faUsers = faUsers;
@@ -72,6 +73,10 @@ export class CampaignComponent implements OnInit, OnDestroy {
 
   creatingSession(received: any){
     this.isCreatingSession = received;
+  }
+
+  addingPlayers(received: any) {
+    this.isAddingPlayer = received;
   }
 
   ngOnDestroy() {

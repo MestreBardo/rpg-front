@@ -16,7 +16,7 @@
             type="text" formControlName="name" class="form-control form-control-sm" id="name" placeholder="name">
             <label for="name">Nome</label>
         </div>
-        <!-- <button type="submit" [disabled]="editCampaignNameForms.invalid" class="btn btn-lg btn-block btn-primary w-100">Salvar</button> -->
+        <button type="submit" [disabled]="editCampaignNameForms.invalid" class="btn btn-lg btn-block btn-primary w-100">Salvar</button>
     </form>
     <hr>
     <form [formGroup]="editCampaignInfoForms" (ngSubmit)="editGroupInfo()">
