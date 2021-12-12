@@ -30,6 +30,11 @@ export class SessionService {
     );
   }
 
+
+  cancelSession(session: any) {
+    return this.http.delete('http://localhost:4000/v1/sessions/'+ session);
+  }
+
   editSessionDate(campaignId: string, campaign: any) {
     return this.http.put(`http://localhost:4000/v1/sessions/${campaignId}`, campaign).pipe(
       tap(

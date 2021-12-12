@@ -46,8 +46,8 @@ export class GroupsService {
     ));
   }
 
-  removeMember(memberId: string){
-    return this.http.delete(`http://localhost:4000/v1/members/${memberId}`).pipe(tap(
+  removeMember(groupId: string, memberId: string){
+    return this.http.delete(`http://localhost:4000/v1/groups/${groupId}/member/${memberId}`).pipe(tap(
       (res: any) => {
         this.userGroupRemoved.emit(res.data.removedUser);
       }

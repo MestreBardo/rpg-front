@@ -9,7 +9,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./my-groups.component.sass']
 })
 export class MyGroupsComponent implements OnInit {
-  groups: any[] = ["teste"];
+  groups: any[] = [];
   faplus = faPlus;
   @Output() initCreatingGroup = new EventEmitter<any>();
   constructor(private groupsService: GroupsService, private toaster: ToastrService) { 

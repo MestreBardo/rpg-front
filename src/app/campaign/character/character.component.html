@@ -1,0 +1,16 @@
+<app-menu></app-menu>
+<div class="px-2 py-1 bg-light d-flex justify-content-between">
+    <button (click)="returnCampaign()" class="btn"> < Retornar a Campanha</button>
+    <button (click)="saveCharacter()" *ngIf="(user._id === me._id) || me.role === 'master' " class="btn btn-primary"> Salvar</button>
+</div>
+
+<div class="container border mt-3">
+    <div class="row">
+        <div class="col-12">
+            <app-character-render [toRender]="template"></app-character-render>
+        </div>
+    </div>
+</div>
+
+
+

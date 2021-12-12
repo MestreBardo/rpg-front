@@ -9,6 +9,7 @@ import { MenuModule } from '../shared/menu/menu.module';
 import { MyGroupsComponent } from './my-groups/my-groups.component';
 import { MyCampaignsComponent } from './my-campaigns/my-campaigns.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
+import { CampaignCardModule } from '../shared/campaign-card/campaign-card.module';
 
 
 
@@ -26,7 +27,8 @@ import { CreateGroupComponent } from './create-group/create-group.component';
     GroupCardModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CampaignCardModule
   ]
 })
 export class HomeModule { }

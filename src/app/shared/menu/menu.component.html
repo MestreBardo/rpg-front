@@ -1,5 +1,5 @@
 <div class="p-2 bg-custom d-flex align-items-center">
-    <img class="img-fluid" style="max-width: 150px;" src="../../../assets/logo2-removebg-preview.png" alt="logo">
+    <img  (click)="goToHome()" class="img-fluid" style="max-width: 150px; cursor: pointer;" src="../../../assets/logo2-removebg-preview.png" alt="logo">
     <form [formGroup]="searchForms" (ngSubmit)="searchGroup()" class=" ms-auto w-50">
         <input formControlName="search" type="text" class="form-control" id="exampleInputEmail1" placeholder="Busque grupos.">
     </form>

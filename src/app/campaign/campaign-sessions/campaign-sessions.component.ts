@@ -13,6 +13,7 @@ import { SessionService } from 'src/services/session.service';
 export class CampaignSessionsComponent implements OnInit {
 
   @Input() campaignId: any;
+  @Input() me: any;
   @Output() initCreatingSession = new EventEmitter<any>();
   subscribedServices: any[] = [];
   sessions: any = [];
@@ -25,6 +26,10 @@ export class CampaignSessionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSessions();
+  }
+
+  removeSession(index: number) {
+    this.sessions.splice(index, 1);
   }
 
   private getSessions() { 

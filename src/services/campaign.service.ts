@@ -8,9 +8,13 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class CampaignService {
   campaignCreated = new EventEmitter<any>();
   campaignUpdated = new EventEmitter<any>();
+  playerAdded = new EventEmitter<any>();
 
   constructor(private http: HttpClient) { }
 
+  getUserSignedCampaigns() {
+    return this.http.get('http://localhost:4000/v1/users/campaigns');
+  }
   getCampaign(campaignId: string) {
     return this.http.get(`http://localhost:4000/v1/campaigns/${campaignId}`);
   };
@@ -44,7 +48,12 @@ export class CampaignService {
 
 
   addPlayerToCampaign(campaignId: string, user: string) {
-    return this.http.post(`http://localhost:4000/v1/campaigns/${campaignId}/player`, { user });
+    return this.http.post(`http://localhost:4000/v1/campaigns/${campaignId}/player`, { user })
+    .pipe(
+      tap(
+        (received: any) => { this.playerAdded.emit(received.data); }
+      )
+    );
   }
 
   verifyPlayersCampaign(campaignId: string, username: string) {

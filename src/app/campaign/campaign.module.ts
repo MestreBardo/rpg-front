@@ -23,6 +23,11 @@ import { ListRenderComponent } from './template/list-render/list-render.componen
 import { InputComponent } from './template/list-render/input/input.component';
 import { SessionCardModule } from '../shared/session-card/session-card.module';
 import { AddPlayerComponent } from './add-player/add-player.component';
+import { CharacterComponent } from './character/character.component';
+import { CharacterRenderComponent } from './character/character-render/character-render.component';
+import { InputCharacterRenderComponent } from './character/input-character-render/input-character-render.component';
+import { TextCharacterRenderComponent } from './character/text-character-render/text-character-render.component';
+import { ListCharacterRenderComponent } from './character/list-character-render/list-character-render.component';
 
 
 
@@ -45,7 +50,12 @@ import { AddPlayerComponent } from './add-player/add-player.component';
     TextRenderComponent,
     ListRenderComponent,
     InputComponent,
-    AddPlayerComponent
+    AddPlayerComponent,
+    CharacterComponent,
+    CharacterRenderComponent,
+    InputCharacterRenderComponent,
+    TextCharacterRenderComponent,
+    ListCharacterRenderComponent
   ],
   imports: [
     CommonModule,

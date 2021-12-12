@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GroupsService } from './../../services/groups.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { faCalendar, faPencilAlt, faUnlockAlt, faUsers, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-group',
@@ -23,7 +24,11 @@ export class GroupComponent implements OnInit, OnDestroy {
   lookingFor: string = "members";
   me: any = {}
   group: any = {name: "Default Name", description: "Default Description", userCount: 0, isPublic: true, owner: {username: "Default Username"}};
-  constructor(private groupService: GroupsService, private activatedRoute: ActivatedRoute, private router: Router, private campaignService: CampaignService) { 
+  constructor(private groupService: GroupsService, 
+    private activatedRoute: ActivatedRoute, 
+    private router: Router, 
+    private campaignService: CampaignService,
+    private toaster: ToastrService)  { 
     this.subscribedServices.push(this.activatedRoute.params.subscribe(params => {
       this.groupId = params['id'];
     }));
@@ -76,6 +81,9 @@ export class GroupComponent implements OnInit, OnDestroy {
         owner: received.data.owner,
       };
       this.me = received.data.me;
+    }, 
+    (error: any) => {
+      this.toaster.error(error.error.message);
     });
   }
 
@@ -91,6 +99,9 @@ export class GroupComponent implements OnInit, OnDestroy {
         owner: received.data.owner,
       };
       this.me = received.data.me;
+    },
+    (error: any) => {
+      this.toaster.error(error.error.data.message ?? error);
     });
   }
 

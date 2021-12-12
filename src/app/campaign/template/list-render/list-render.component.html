@@ -1,7 +1,7 @@
 <input for="disabledTextInput" [(ngModel)]="field.label" class="form-label border-0">
 
 <div class="d-flex flex-column">
-    <input disabled *ngFor="let item of field.items; let i = index" type="text" [value]="item" (change)="changeValue($event, i)"  class="form-control form-control-sm mt-2" >
+    <input disabled *ngFor="let item of field.items; let i = index" type="text" [value]="item.value" (change)="changeValue($event, i)"  class="form-control form-control-sm mt-2" >
     <button (click)="addNewItem()" class="btn btn-sm btn-primary w-100 mt-2">Adicionar</button>
 </div>
 

@@ -14,7 +14,9 @@ export class ListRenderComponent implements OnInit {
   }
 
   addNewItem() {
-    this.field.items.push("");
+    this.field.items.push({
+      value: '',
+    });
   }
   changeValue(event: any, index: number) {
     const value = event.target.value;

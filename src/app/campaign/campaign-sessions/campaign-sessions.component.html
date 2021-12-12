@@ -1,5 +1,5 @@
 <div class="row mt-3">
-    <div class="col-12 col-md-3 col-lg-2 mb-3">
+    <div *ngIf="me.role === 'master'" class="col-12 col-md-3 col-lg-2 mb-3">
 
         <div (click)="initCreatingSession.emit(true)" class="border rounded pointer p-2">
             <div class="d-flex align-items-center justify-content-center">
@@ -16,7 +16,7 @@
             <p class="mb-0 mt-auto">Criar Nova Sessão</p>
         </div> -->
     </div>
-    <div *ngFor="let session of sessions" class="col-12 col-md-3 col-lg-2 mb-3">
-        <app-session-card [session]="session"></app-session-card>
+    <div *ngFor="let session of sessions; let i = index" class="col-12 col-md-3 col-lg-2 mb-3">
+        <app-session-card [me]="me" (onDeleteSession)="removeSession(i)" [session]="session"></app-session-card>
     </div>
 </div>

@@ -1,0 +1,21 @@
+
+<ng-container [ngSwitch]="toRender.type">
+    <div class="column-maker bg-white pb-4" style="min-height: 20px;" *ngSwitchCase="'column'" [class]="'template' + toRender.index">
+        <app-character-render *ngFor="let children of toRender.childrens;"  [toRender]="children"></app-character-render>
+    </div>
+    <div class="column-maker bg-white" style="min-height: 20px;" *ngSwitchCase="'input'" [class]="'template' + toRender.index">
+        <app-input-character-render [field]="toRender"></app-input-character-render>
+    </div>
+    <div class="column-maker bg-white" style="min-height: 20px;" *ngSwitchCase="'text'" [class]="'template' + toRender.index">
+        <app-text-character-render [field]="toRender"></app-text-character-render>
+    </div>
+    <div class="column-maker bg-white" style="min-height: 20px;" *ngSwitchCase="'list'" [class]="'template' + toRender.index">
+        <app-list-character-render [field]="toRender"></app-list-character-render>
+    </div>
+    <div  class="row bg-white" style="min-height: 20px;"  *ngSwitchCase="'row'" [class]="'template' + toRender.index">
+        <div *ngFor="let children of toRender.childrens; let i = index" [class]="'col-' + children.size">
+            <app-character-render  [toRender]="children"></app-character-render>
+        </div>
+    </div>
+</ng-container>
+

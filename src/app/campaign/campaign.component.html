@@ -7,7 +7,8 @@
         </ng-container>
         <ng-container *ngIf="me">
           <button *ngIf="me.role === 'master'" (click)="editingCampaign(true)" class="btn btn-info text-white"><fa-icon [icon]="faPencilAlt"></fa-icon></button>
-          <button *ngIf="me.role !== 'master'" class="btn btn-danger ms-2"><fa-icon [icon]="faSignOutAlt"></fa-icon></button>
+          <button *ngIf="me.role !== 'master'" (click)="acessCharacter()" class="btn btn-primary ms-2"><fa-icon [icon]="faUser"></fa-icon></button>
+          <button *ngIf="me.role !== 'master'" (click)="leaveCampaign()" class="btn btn-danger ms-2"><fa-icon [icon]="faSignOutAlt"></fa-icon></button>
         </ng-container>
         
       </div>
@@ -41,13 +42,7 @@
           [class.active]="lookingFor === 'sessions'"  
           class="nav-link">Sessões</a>
         </li>
-        <li
-        (click)="goTo('characters')" class="nav-item pointer">
-          <a
-          [class.active]="lookingFor === 'characters'"  
-          class="nav-link">Personagens</a>
-        </li>
-        <li
+        <li *ngIf="me && me.role === 'master'"
         (click)="goTo('template')" class="nav-item pointer">
           <a
           [class.active]="lookingFor === 'template'"  
@@ -56,7 +51,8 @@
     </ul>
     <ng-container *ngIf="campaign.id" [ngSwitch]="lookingFor">
       <app-campaign-players (initAddingPlayers)="addingPlayers($event)" [campaignId]="campaign.id" [me]="me" *ngSwitchCase="'players'"></app-campaign-players>
-      <app-campaign-sessions (initCreatingSession)="creatingSession($event)" [campaignId]="campaign.id" *ngSwitchCase="'sessions'"></app-campaign-sessions>
+      <app-campaign-template [campaignId]="campaign.id" *ngSwitchCase="'template'"></app-campaign-template>
+      <app-campaign-sessions (initCreatingSession)="creatingSession($event)" [campaignId]="campaign.id" [me]="me" *ngSwitchCase="'sessions'"></app-campaign-sessions>
     </ng-container>
 </div>
 
@@ -70,5 +66,5 @@
 
 
 <div *ngIf="isAddingPlayer"  class="position-absolute h-100 bg-white border border-left w-25" style="right: 0; top: 0;">
-  <app-add-players [campaignId]="campaign.id" (finishCreatingSession)="creatingSession($event)"></app-add-players>
+  <app-add-players [campaignId]="campaign.id" (finishAddingPlayers)="addingPlayers($event)"></app-add-players>
 </div>

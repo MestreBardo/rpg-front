@@ -1,0 +1,5 @@
+<label class="p-2">{{field.label}}</label>
+<div class="d-flex flex-column">
+    <input *ngFor="let item of field.items; let i = index" [(ngModel)]="item.value" class="form-control form-control-sm mt-2" >
+</div>
+

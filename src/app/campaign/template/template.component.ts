@@ -1,8 +1,8 @@
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CampaignService } from './../../../services/campaign.service';
 import { TemplateService } from './../../../services/template.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-template',
@@ -18,6 +18,7 @@ export class TemplateComponent implements OnInit {
   sonIndexSolicited = 0;
   campaignId = "";
 
+
   template = {
     type: "column",
     size: "12",
@@ -27,11 +28,17 @@ export class TemplateComponent implements OnInit {
     ],
     actualIndex: 1,
   }
-  constructor(private templateService: TemplateService, private campaignService: CampaignService, private activeRoute: ActivatedRoute, private toaster: ToastrService) { 
+  constructor(private templateService: TemplateService, 
+    private campaignService: CampaignService, 
+    private activeRoute: ActivatedRoute, 
+    private toaster: ToastrService,
+    private router: Router) { 
     this.activeRoute.params.subscribe(params => {
       this.campaignId = params.id;
     });
     this.templateService.showConstructor.subscribe(evento => {
+      this.columnConstructorEnabled = false;
+      this.rowConstructorEnabled = false;
       this.indexSolicited = evento.index;
       switch(evento.type) {
         case "row":
@@ -62,9 +69,16 @@ export class TemplateComponent implements OnInit {
 
   saveNewTemplate() {
     this.campaignService.saveTemplate(this.campaignId, this.template).subscribe(
-      (response) => { this.toaster.success("Template salvo com sucesso!"); },
+      (response) => { 
+        this.toaster.success("Template salvo com sucesso!");
+        this.router.navigate(['/campaign/' + this.campaignId]);
+      },
       (error) => { this.toaster.error("Erro ao salvar template!"); }
     );
+  }
+
+  returnToCampaign() {
+    this.router.navigate(['/campaign/' + this.campaignId]);
   }
 
 

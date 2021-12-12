@@ -1,1 +1,6 @@
-<div></div>
+<div class="row mt-3">
+
+    <div *ngFor="let campaign of campaigns" class="col-12 col-md-3 col-lg-2 mb-3">
+        <app-campaign-card [campaign]="campaign.info" [userSignedRole]="campaign.role"></app-campaign-card>
+    </div>
+</div>

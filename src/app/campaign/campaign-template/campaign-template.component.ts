@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-campaign-template',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./campaign-template.component.sass']
 })
 export class CampaignTemplateComponent implements OnInit {
-
-  constructor() { }
+  @Input() campaignId: any;
+  faPlus = faPlus;
+  constructor(private activatedRouter: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    
+  }
+
+  gotoCampaign() {
+    this.router.navigate(['/campaign/' + this.campaignId + '/template']);
   }
 
 }

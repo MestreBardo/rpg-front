@@ -44,4 +44,8 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
 }

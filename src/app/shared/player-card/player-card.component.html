@@ -4,7 +4,8 @@
         <small> {{member.joinedAt | date: "dd/MM/yyyy"}} <fa-icon [icon]="faCalendar"></fa-icon></small>
         <small class="badge bg-dark ms-auto">{{member.role | titlecase}}</small>
         <ng-container *ngIf="userSigned">
-           <button *ngIf="member.userId !== userSigned.user" [disabled]="member.role === 'master' || userSigned.role !== 'user' " class="btn btn-sm btn-outline-danger ms-2" (click)="removePlayer(member.id)"><fa-icon [icon]="faTrash"></fa-icon></button>
+           <button *ngIf="member._id !== userSigned._id" [disabled]="member.role === 'master' || userSigned.role !== 'master' " class="btn btn-sm btn-outline-danger ms-2" (click)="removePlayer(member._id)"><fa-icon [icon]="faTrash"></fa-icon></button>
+           <button (click)="acessCharacter()" class="btn btn-sm btn-outline-info ms-2 " *ngIf="(member.role !== 'master' && userSigned.role === 'master' && member.template)" ><fa-icon [icon]="faUser"></fa-icon></button>
         </ng-container>
         
     </div>

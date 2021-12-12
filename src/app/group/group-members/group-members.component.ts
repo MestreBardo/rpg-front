@@ -13,8 +13,7 @@ export class GroupMembersComponent implements OnInit {
   members: any[] = [];
   constructor(private groupService: GroupsService, private toaster: ToastrService) {
     this.groupService.userGroupJoined.subscribe((received: any) => this.members.push(received))
-    this.groupService.userGroupRemoved.subscribe((received: any) => this.members = this.members.filter(f => f.userId !== received))
-   }
+  }
 
   ngOnInit(): void {
     this.groupService.getGroupMembers(this.groupId).subscribe(
@@ -33,6 +32,10 @@ export class GroupMembersComponent implements OnInit {
         this.toaster.error(error.error.data);
       }
     );
+  }
+
+  removedMember(index: number) {
+    this.members.splice(index, 1);
   }
 
 }

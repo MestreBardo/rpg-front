@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GroupsService } from './../../services/groups.service';
 import { faCalendar, faUnlockAlt, faUsers, faPencilAlt, faUser, faSignOutAlt, faJournalWhills } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { PlayersService } from 'src/services/players.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-campaign',
@@ -24,9 +26,15 @@ export class CampaignComponent implements OnInit, OnDestroy {
   isEditingCampaign: boolean = false;
   isCreatingSession: boolean = false;
   lookingFor: string = "players";
+  
   me: any = {}
   campaign: any = {name: "Default Name", description: "Default Description", userCount: 0, isPublic: true, master: {username: "Default Username"}};
-  constructor(private groupService: GroupsService, private activatedRoute: ActivatedRoute, private router: Router, private campaignService: CampaignService) { 
+  constructor(private groupService: GroupsService, 
+    private activatedRoute: ActivatedRoute, 
+    private router: Router, 
+    private campaignService: CampaignService,
+    private playerService: PlayersService,
+    private toaster: ToastrService) { 
     this.subscribedServices.push(this.activatedRoute.params.subscribe(params => {
       this.campaignId = params['id'];
     }));
@@ -56,6 +64,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
       };
       this.me = received.data.me;
     });
+    
   }
   goTo(param: string) {
     this.router.navigate(
@@ -71,12 +80,25 @@ export class CampaignComponent implements OnInit, OnDestroy {
     this.isEditingCampaign = received;
   }
 
+  acessCharacter() {
+    this.router.navigate(["/campaign", this.campaignId, "character", this.me._id]);
+  }
+
   creatingSession(received: any){
     this.isCreatingSession = received;
   }
 
   addingPlayers(received: any) {
     this.isAddingPlayer = received;
+  }
+
+  leaveCampaign() {
+    this.playerService.leaveCampaign(this.me._id)
+    .subscribe((received: any) => {
+      this.toaster.success("You have left the campaign");
+      this.router.navigate(["/home"]);
+    },
+    (error: any) => this.toaster.error(error.error.data.message ?? error));
   }
 
   ngOnDestroy() {
